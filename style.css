@@ -297,7 +297,7 @@ body.light .btn:active {
 .panels {
   display: flex;
   flex-direction: column;  /* mobile-first: stacked */
-  /* No height:100% or flex:1 on mobile — let content dictate height */
+  width: 100%;             /* always fill the container width */
 }
 
 .text-panel {
@@ -515,8 +515,10 @@ textarea.text-panel::placeholder {
     height: auto;
   }
 
-  /* Textareas fill full available height, no manual resize needed */
+  /* Textareas fill full available height and split the row equally */
   .text-panel {
+    flex: 1;        /* grow to fill the row */
+    width: 0;       /* allow flex to shrink below natural textarea width */
     height: 100%;
     min-height: unset;
     resize: none;
