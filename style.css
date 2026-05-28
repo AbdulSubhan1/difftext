@@ -1,0 +1,524 @@
+/* ============================================================
+   CSS Custom Properties — single source of truth for all theme
+   values. Change here to restyle the whole app.
+   ============================================================ */
+:root {
+  /* Brand — teal/cyan */
+  --color-bg:           #0f1923;
+  --color-surface:      #172130;
+  --color-border:       #243347;
+  --color-header-from:  #006d77;
+  --color-header-to:    #004e57;
+  --color-primary:      #00b4d8;
+  --color-primary-dark: #0096b4;
+  --color-text:         #dce8f0;
+  --color-text-muted:   #6b8a9e;
+  --color-placeholder:  #3a5268;
+  --color-footer-link:  #48cae4;
+
+  /* Diff highlight pairs — kept vivid so they pop on dark bg */
+  --hl-line-remove-bg:  #4d0000;
+  --hl-line-remove-fg:  #ffcdd2;
+  --hl-line-add-bg:     #003d40;
+  --hl-line-add-fg:     #b2ebf2;
+
+  --hl-word-remove-bg:  #4a0030;
+  --hl-word-remove-fg:  #f8bbd0;
+  --hl-word-add-bg:     #00263a;
+  --hl-word-add-fg:     #b2dfdb;
+
+  --hl-char-remove-bg:  #3e2000;
+  --hl-char-remove-fg:  #ffe0b2;
+  --hl-char-add-bg:     #1a0040;
+  --hl-char-add-fg:     #e1bee7;
+
+  /* Spacing & shape */
+  --radius:    6px;
+  --gap:       12px;
+  --font-mono: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+}
+
+/* ============================================================
+   Light theme — overrides every color token when .light is on <body>
+   ============================================================ */
+body.light {
+  --color-bg:           #f0f7fa;
+  --color-surface:      #ffffff;
+  --color-border:       #c5dde8;
+  --color-header-from:  #0096b4;
+  --color-header-to:    #006d77;
+  --color-primary:      #006d77;
+  --color-primary-dark: #004e57;
+  --color-text:         #0d2535;
+  --color-text-muted:   #4a7a8e;
+  --color-placeholder:  #8ab4c2;
+  --color-footer-link:  #0077a8;
+
+  --hl-line-remove-bg:  #fde8e8;
+  --hl-line-remove-fg:  #b71c1c;
+  --hl-line-add-bg:     #e0f7fa;
+  --hl-line-add-fg:     #004d40;
+
+  --hl-word-remove-bg:  #fce4ec;
+  --hl-word-remove-fg:  #880e4f;
+  --hl-word-add-bg:     #e0f2f1;
+  --hl-word-add-fg:     #004d40;
+
+  --hl-char-remove-bg:  #fff3e0;
+  --hl-char-remove-fg:  #e65100;
+  --hl-char-add-bg:     #ede7f6;
+  --hl-char-add-fg:     #4a148c;
+}
+
+/* ============================================================
+   Reset / Base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the HTML `hidden` attribute always wins over display rules */
+[hidden] { display: none !important; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header {
+  background: linear-gradient(135deg, var(--color-header-from) 0%, var(--color-header-to) 100%);
+  /* Diagonal stripe texture — distinct from any grid pattern */
+  background-image:
+    linear-gradient(135deg, var(--color-header-from) 0%, var(--color-header-to) 100%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 18px,
+      rgba(255,255,255,.04) 18px,
+      rgba(255,255,255,.04) 19px
+    );
+  padding: 32px 16px 24px;
+  text-align: center;
+}
+
+/* Icon above the title */
+.site-logo {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,.85);
+  user-select: none;
+}
+
+.site-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1;
+}
+
+/* Subtitle tagline */
+.site-tagline {
+  margin-top: 6px;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  color: rgba(255,255,255,.65);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================================
+   Toolbar
+   ============================================================ */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  padding: 12px 16px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* On mobile, center group fills the row and center-aligns */
+.toolbar-center {
+  flex: 1;
+  justify-content: center;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  padding: 7px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,.07);
+  border-color: #666;
+}
+
+.btn:active {
+  background: rgba(255,255,255,.12);
+}
+
+/* Theme toggle — icon-only pill */
+.btn-theme {
+  padding: 6px 10px;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: var(--radius);
+}
+
+body.light .btn-theme {
+  background: rgba(0,0,0,.06);
+}
+
+body.light .btn:hover {
+  background: rgba(0,0,0,.08);
+  border-color: #bbb;
+}
+
+body.light .btn:active {
+  background: rgba(0,0,0,.14);
+}
+
+/* Primary = green Compare button */
+.btn-primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 28px;
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+/* ============================================================
+   Mode Bar (pill toggle)
+   ============================================================ */
+.mode-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 8px 16px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mode-option {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide the real radio input; style the label span as a pill segment */
+.mode-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.mode-option span {
+  display: inline-block;
+  padding: 5px 18px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 13px;
+  transition: background 0.15s, color 0.15s;
+  background: transparent;
+}
+
+/* Join segments into a single pill shape */
+.mode-option:first-child span { border-radius: var(--radius) 0 0 var(--radius); }
+.mode-option:last-child  span { border-radius: 0 var(--radius) var(--radius) 0; border-left: none; }
+.mode-option:not(:first-child):not(:last-child) span { border-left: none; }
+
+/* Active / checked state */
+.mode-option input[type="radio"]:checked + span {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.mode-option span:hover {
+  background: rgba(255,255,255,.06);
+}
+
+/* ============================================================
+   Main Area & Panels
+   ============================================================ */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Allow mobile panels to expand beyond viewport and scroll naturally */
+  overflow: visible;
+}
+
+/* Panels wrapper: flex row on desktop, column on mobile (default) */
+.panels {
+  display: flex;
+  flex-direction: column;  /* mobile-first: stacked */
+  /* No height:100% or flex:1 on mobile — let content dictate height */
+}
+
+.text-panel {
+  /* Fixed height on mobile so both panels are equally visible */
+  height: 260px;
+  min-height: 160px;
+  padding: 14px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: none;
+  outline: none;
+  resize: vertical;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-y: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+textarea.text-panel::placeholder {
+  color: var(--color-placeholder);
+}
+
+/* Thin divider between panels */
+.panel-divider {
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Diff output panels are read-only divs */
+.diff-output {
+  resize: none;
+  cursor: default;
+}
+
+/* ============================================================
+   Diff Highlight Classes
+   Each mode gets its own remove/add pair so colors stay distinct.
+   ============================================================ */
+
+/* --- Line mode --- */
+.hl-line-remove { background: var(--hl-line-remove-bg); color: var(--hl-line-remove-fg); display: block; }
+.hl-line-add    { background: var(--hl-line-add-bg);    color: var(--hl-line-add-fg);    display: block; }
+
+/* --- Word mode --- */
+.hl-word-remove { background: var(--hl-word-remove-bg); color: var(--hl-word-remove-fg); border-radius: 3px; }
+.hl-word-add    { background: var(--hl-word-add-bg);    color: var(--hl-word-add-fg);    border-radius: 3px; }
+
+/* --- Character mode --- */
+.hl-char-remove { background: var(--hl-char-remove-bg); color: var(--hl-char-remove-fg); border-radius: 2px; }
+.hl-char-add    { background: var(--hl-char-add-bg);    color: var(--hl-char-add-fg);    border-radius: 2px; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+  padding: 14px 16px;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  font-family: sans-serif;
+}
+
+/* Footer links are buttons styled to look like links */
+.footer-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-footer-link);
+  font-size: 13px;
+  font-family: inherit;
+  padding: 0;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer-sep {
+  margin: 0 8px;
+  color: var(--color-text-muted);
+}
+
+.footer-copy {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Modals
+   ============================================================ */
+.modal {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) * 2);
+  padding: 0;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.45);
+  font-family: sans-serif;
+}
+
+/* Native <dialog> backdrop */
+.modal::backdrop {
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(2px);
+}
+
+.modal-inner {
+  padding: 28px 28px 24px;
+  position: relative;
+}
+
+.modal h2 {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+  color: var(--color-primary);
+}
+
+.modal p {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.modal ul {
+  font-size: 14px;
+  line-height: 1.8;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.modal code, .modal kbd {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.modal-note {
+  font-size: 12px !important;
+  color: var(--color-text-muted) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Close button (✕) top-right */
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: var(--radius);
+  transition: color 0.15s, background 0.15s;
+}
+
+.modal-close:hover {
+  color: var(--color-text);
+  background: rgba(128,128,128,.15);
+}
+
+/* CTA button inside modals (e.g. Send email) */
+.modal-btn {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 8px 20px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.modal-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ============================================================
+   Responsive — desktop layout (≥ 768px)
+   ============================================================ */
+@media (min-width: 768px) {
+  /* Restore overflow:hidden so panels don't bleed past the viewport */
+  .main-area {
+    flex: 1;
+    overflow: hidden;
+    min-height: calc(100vh - 200px);
+  }
+
+  /* Panels fill the main area height and go side by side */
+  .panels {
+    flex: 1;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  /* Vertical divider instead of horizontal */
+  .panel-divider {
+    width: 2px;
+    height: auto;
+  }
+
+  /* Textareas fill full available height, no manual resize needed */
+  .text-panel {
+    height: 100%;
+    min-height: unset;
+    resize: none;
+  }
+}

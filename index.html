@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DiffText — instantly compare two texts and highlight differences by word, line, or character. Fast, free, and 100% browser-based." />
+  <title>DiffText — Instant Text Comparison</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="site-logo" aria-hidden="true">⟺</div>
+    <h1 class="site-title">DiffText</h1>
+    <p class="site-tagline">Instant text comparison — word, line, or character</p>
+  </header>
+
+  <!-- ===== TOOLBAR ===== -->
+  <div class="toolbar">
+    <!-- Left button group -->
+    <div class="toolbar-group toolbar-left">
+      <button id="btn-edit"   class="btn btn-secondary" aria-label="Edit texts">✏️ Edit</button>
+      <button id="btn-switch" class="btn btn-secondary" aria-label="Swap the two texts">⇄ Swap</button>
+    </div>
+
+    <!-- Center: primary action -->
+    <div class="toolbar-group toolbar-center">
+      <button id="btn-compare" class="btn btn-primary" aria-label="Run diff on the two texts">Run Diff</button>
+    </div>
+
+    <!-- Right button group -->
+    <div class="toolbar-group toolbar-right">
+      <button id="btn-clear" class="btn btn-secondary" aria-label="Clear all text">🗑 Clear</button>
+      <button id="btn-theme" class="btn btn-theme" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">☀️</button>
+    </div>
+  </div>
+
+  <!-- Diff-mode selector (pill toggle) -->
+  <div class="mode-bar" role="group" aria-label="Diff mode">
+    <label class="mode-option">
+      <input type="radio" name="diff-mode" value="word" checked />
+      <span>Word</span>
+    </label>
+    <label class="mode-option">
+      <input type="radio" name="diff-mode" value="line" />
+      <span>Line</span>
+    </label>
+    <label class="mode-option">
+      <input type="radio" name="diff-mode" value="char" />
+      <span>Character</span>
+    </label>
+  </div>
+
+  <!-- ===== MAIN EDITOR / DIFF AREA ===== -->
+  <main class="main-area">
+
+    <!-- Input textareas (shown by default) -->
+    <section class="panels" id="editor-panels" aria-label="Text input panels">
+      <textarea
+        id="text-left"
+        class="text-panel"
+        placeholder="Paste your original text here…"
+        aria-label="Original text"
+        spellcheck="false"
+      ></textarea>
+      <div class="panel-divider" aria-hidden="true"></div>
+      <textarea
+        id="text-right"
+        class="text-panel"
+        placeholder="Paste your modified text here…"
+        aria-label="Modified text"
+        spellcheck="false"
+      ></textarea>
+    </section>
+
+    <!-- Diff output panels (hidden until Run Diff is clicked) -->
+    <section class="panels" id="diff-panels" aria-label="Diff output panels" hidden>
+      <div id="diff-left"  class="text-panel diff-output" aria-label="Original text with removals highlighted"></div>
+      <div class="panel-divider" aria-hidden="true"></div>
+      <div id="diff-right" class="text-panel diff-output" aria-label="Modified text with additions highlighted"></div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <nav aria-label="Footer navigation">
+      <button class="footer-link" id="footer-about">About</button>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <button class="footer-link" id="footer-feedback">Feedback</button>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <button class="footer-link" id="footer-privacy">Privacy</button>
+    </nav>
+    <p class="footer-copy">© 2025 DiffText</p>
+  </footer>
+
+  <!-- ===== MODALS ===== -->
+
+  <!-- About -->
+  <dialog id="modal-about" class="modal" aria-labelledby="modal-about-title">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <h2 id="modal-about-title">About DiffText</h2>
+      <p>A fast, free, browser-based text diff tool. Paste two versions of any text and instantly see what changed — highlighted by <strong>word</strong>, <strong>line</strong>, or <strong>character</strong>.</p>
+      <ul>
+        <li>Three diff modes with distinct color highlights</li>
+        <li>Light &amp; dark theme, remembers your preference</li>
+        <li>100% client-side — nothing leaves your browser</li>
+        <li>Keyboard shortcut: <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run diff</li>
+      </ul>
+      <p class="modal-note">Built with vanilla HTML, CSS &amp; JavaScript using an LCS-based diff algorithm.</p>
+    </div>
+  </dialog>
+
+  <!-- Feedback -->
+  <dialog id="modal-feedback" class="modal" aria-labelledby="modal-feedback-title">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <h2 id="modal-feedback-title">Feedback</h2>
+      <p>Found a bug or have a suggestion? I'd love to hear from you.</p>
+      <a class="modal-btn" href="mailto:subbidurrani@gmail.com?subject=DiffText%20Feedback">Send an email</a>
+    </div>
+  </dialog>
+
+  <!-- Privacy -->
+  <dialog id="modal-privacy" class="modal" aria-labelledby="modal-privacy-title">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <h2 id="modal-privacy-title">Privacy</h2>
+      <p><strong>No data is collected, stored, or transmitted.</strong></p>
+      <p>Everything you type stays in your browser. DiffText runs entirely client-side — there is no server, no analytics, and no cookies beyond your saved theme preference in <code>localStorage</code>.</p>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>

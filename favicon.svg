@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Left document — teal -->
+  <rect x="2" y="4" width="13" height="17" rx="2" fill="#006d77"/>
+  <line x1="5" y1="9"  x2="12" y2="9"  stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="5" y1="12" x2="12" y2="12" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="5" y1="15" x2="9"  y2="15" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Swap arrow between docs -->
+  <text x="16" y="15" font-size="7" fill="#00b4d8" text-anchor="middle" font-family="sans-serif">⇄</text>
+  <!-- Right document — cyan -->
+  <rect x="17" y="11" width="13" height="17" rx="2" fill="#00b4d8"/>
+  <line x1="20" y1="16" x2="27" y2="16" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="20" y1="19" x2="27" y2="19" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="20" y1="22" x2="24" y2="22" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
