@@ -1,4 +1,23 @@
-# DiffText ⟺
+# DiffText ⟺ — Free Online Text Compare & Diff Tool
+
+**[🚀 Live Demo → abdulsubhan1.github.io/difftext](https://abdulsubhan1.github.io/difftext/)**
+
+A fast, free online text comparison tool. Paste two versions of any text and instantly see the differences highlighted — by **word**, **line**, or **character**. No account, no upload, no install — runs 100% in your browser.
+
+> **The quickest way to compare two texts online.** Find differences between documents, code, essays, or any plain text in seconds — completely private, nothing leaves your browser.
+
+### Why use DiffText?
+
+- **Instant text compare** — paste and click, results in milliseconds
+- **Three diff modes** — word-by-word, line-by-line, character-by-character
+- **Side-by-side view** — additions and removals highlighted with distinct colors
+- **Works offline** — fully functional without an internet connection
+- **Private** — your text never leaves your browser, no server involved
+- **Free forever** — no account, no subscription, no file upload needed
+
+**Keywords:** text compare, compare two texts, text diff tool, online diff, text comparison, find differences, word diff, line diff, character diff, compare text online, free diff tool
+
+---
 
 A clean, fast, mobile-first text diff tool. Paste two versions of any text and instantly see what changed — highlighted by **word**, **line**, or **character** — each with its own distinct color scheme.
 
