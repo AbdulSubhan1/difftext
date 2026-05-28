@@ -390,6 +390,25 @@ textarea.text-panel::placeholder {
   color: var(--color-text-muted);
 }
 
+/* GitHub anchor links in footer — same look as the button footer-links */
+a.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+a.footer-link:hover { text-decoration: underline; }
+
+/* Small inline GitHub mark */
+.gh-icon {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
 /* ============================================================
    Modals
    ============================================================ */
